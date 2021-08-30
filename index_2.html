@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href= "style.css">
+    <title>Google</title>
+</head>
+
+<body>
+    <div class="grid-container">
+        <div class="row-1">
+            <div class="item-0">
+                <div class="item-1"><img class="google" src="google.png" alt="Google"></div>
+                <div class="item-2">
+                    <div class="item-2-a">
+                        <input type="search" class="search" id="input" onkeypress="onEnterClick(event)">
+                    </div>
+                    <div class="item-2-b">
+                        <div class="icons">
+                            <span class="material-icons keyboard_voice" style="color:blue" onclick="CheckPassword()">keyboard_voice</span>
+                        </div>
+                        <div class="icons">
+                            <span class="material-icons search" style="color:blue" onclick="CheckPassword()">search</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-3">
+                <div class="icons-2">
+                    <span class="material-icons settings">settings</span>
+                </div>
+                <div class="icons-2">
+                    <span class="material-icons apps">apps</span>
+                </div>
+                <div class="icons-2 profile">
+                    <span class="name" id="name">A</span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row-2">
+            <div class=" item-4"></div>
+            <div class="item-5">
+                <div class="item-5-a" onclick=" onIconClick(this)" id ="all">
+                    <span class="material-icons icon search_2">search</span>
+                    <p >All</p>
+                </div>
+                <div class="item-5-b" onclick=" onIconClick(this)" id="img">
+                    <span class="material-icons icon image">crop_original</span>
+                    <p>Image</p>
+                </div>
+                <div class="item-5-c"onclick=" onIconClick(this)" id="news">
+                    <span class="material-icons icon news">article</span>
+                    <p>News</p>
+                </div>
+                <div class="item-5-d"onclick=" onIconClick(this)" id="video">
+                    <span class="material-icons icon video">smart_display</span>
+                    <p>Video</p>
+                </div>
+                <div class="item-5-e"onclick=" onIconClick(this)" id="shop">
+                    <span class="material-icons icon shop">shopping_cart</span>
+                    <p>Shopping</p>
+                </div>
+                <div class="item-5-f">
+                    <span class="material-icons icon more">more_vert</span>
+                    <p>More</p>
+                </div>
+                <div class="item-5-g"></div>
+                <div class="item-5-h">
+                    <p>Tools</p>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="row-3">
+            
+        </div>
+
+    </div>
+
+
+
+<script src="index.js"></script>
+</body>
+
+</html>
