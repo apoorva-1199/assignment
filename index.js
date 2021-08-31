@@ -7,12 +7,20 @@
 
 // var prevElem = "all";
 
+// var buttonData = {
+//     'all': { 'fun': fetchPostData, 'isCalled': false },
+//     'img': { 'fun': fetchRoboImage, 'isCalled': false },
+//     'news': { 'fun': slideShow, 'isCalled': false },
+//     'video': { 'fun': videoPlayer, 'isCalled': false },
+//     'shop': { 'fun': getShopItems, 'isCalled': false }
+// }
 
 //on search bar
 function CheckPassword() {
     var myInput = document.getElementById("input");
     var paswd = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/;
     if (myInput.value.match(paswd)) {
+        document.getElementById('all').classList.add('active');
         fetchPostData();
         return true;
     } else {
@@ -36,24 +44,36 @@ function onEnterClick(event) {
 function onIconClick(obj) {
     var id = obj.id;
     console.log(id);
+    var clicked = true;
 
     var buttonData = {
-        'all' : fetchPostData,
-        'img' :fetchRoboImage,
-        'news':slideShow,
-        'video':videoPlayer,
-        'shop':getShopItems
+        'all': fetchPostData,
+        'img': fetchRoboImage,
+        'news': slideShow,
+        'video': videoPlayer,
+        'shop': getShopItems
     }
     console.log(buttonData);
-    Object.entries(buttonData).forEach(([key,value]) => {
-        if(key===id){
-            console.log("inside buttonData");
-            selectedElement(id);
-            getDiv(id);
-            buttonData[key].call();
+    Object.entries(buttonData).forEach(([key, value]) => {
+        
+        if (key === id) {
+            //clicked=true;
+             if (clicked) {
+                //clicked=true;
+                console.log("inside buttonData");
+                selectedElement(id);
+                getDiv(id);
+                buttonData[key].call();
+                clicked=false;
+            }
+            
+            // console.log("inside buttonData");
+            // selectedElement(id);
+            // getDiv(id);
+            // buttonData[key].call();
         }
     });
-    
+
     // if (id == 'all') {
     //     getDiv(id);
     //     fetchPostData();
@@ -67,7 +87,7 @@ function onIconClick(obj) {
     // } else if (id == 'video') {
     //     getDiv(id);
     //     videoPlayer()
-        
+
     // } else if (id == 'shop') {
     //     getDiv(id)
     //     document.getElementsByClassName("row-3")[0].className += ' products';
@@ -76,7 +96,7 @@ function onIconClick(obj) {
 }
 
 
-function getDiv(id){
+function getDiv(id) {
     var divName = document.getElementsByClassName("row-3")[0];
     divName.innerHTML = "";
     //restoreColor(id);  
@@ -87,18 +107,18 @@ function fetchPostData() {
     document.getElementsByClassName("row-3")[0].classList.remove('products');
     document.getElementsByClassName("row-3")[0].classList.remove('roboimg');
     fetch('https://jsonplaceholder.typicode.com/posts')
-        .then(response=>response.json())
+        .then(response => response.json())
         .then(posts => {
             let output = "&lt;h2&gt;Lists of Posts&lt;/h2&gt;";
-             //output = "<h2>Lists of Posts</h2>";
+            //output = "<h2>Lists of Posts</h2>";
             document.getElementsByClassName("row-3")[0].innerHTML = output;
             var ul = document.createElement('ul');
             posts.forEach(function (post) {
                 var li = document.createElement('li');
-	            li.textContent = post.title;
-	            ul.appendChild(li);
+                li.textContent = post.title;
+                ul.appendChild(li);
             });
-        document.getElementsByClassName("row-3")[0].appendChild(ul);
+            document.getElementsByClassName("row-3")[0].appendChild(ul);
         });
 }
 
@@ -141,35 +161,37 @@ function slideShow() {
 }
 
 //for video
-function videoPlayer(){
-document.getElementsByClassName('row-3')[0].innerHTML = "<iframe title='YouTube video player' id='player'  type=\'text/html\' width='640' height='390' src='http://www.youtube.com/embed/W-Q7RMpINVo' frameborder='0' allowFullScreen></iframe>";
+function videoPlayer() {
+    document.getElementsByClassName('row-3')[0].innerHTML = "<iframe title='YouTube video player' id='player'  type=\'text/html\' width='640' height='390' src='http://www.youtube.com/embed/W-Q7RMpINVo' frameborder='0' allowFullScreen></iframe>";
 }
 
 //for shopping 
 function getShopItems() {
     document.getElementsByClassName("row-3")[0].classList.add('products');
     document.getElementsByClassName("row-3")[0].classList.remove('roboimg');
-
+    console.log("In shop block");
     fetch("https://fakestoreapi.com/products")
         .then((res) => res.json())
         .then((products) => {
             let output = '<h2>Lists of Products</h2>';
-            products.forEach(function (product) {
-                output += `<img src = ${product.image} style:'width=100px; height=100px'>`;
-            });
             document.getElementsByClassName("row-3")[0].innerHTML = output;
+            products.forEach(function (product) {
+                var img = document.createElement('img');
+                img.src = src = product.image ;
+                document.getElementsByClassName("row-3")[0].appendChild(img);
+            });
         });
 }
 
-function selectedElement(id){
-       var remove = document.getElementsByClassName("active");
-       console.log(remove);
-       if(remove.length!=0){
+function selectedElement(id) {
+    var remove = document.getElementsByClassName("active");
+    console.log(remove);
+    if (remove.length != 0) {
         remove[0].classList.remove('active');
-       }
-        
-        var el = document.getElementById(id);
-        el.classList.add('active');
+    }
+
+    var el = document.getElementById(id);
+    el.classList.add('active');
 }
 
 // function changeColor() {
