@@ -34,13 +34,42 @@ function onEnterClick(event) {
 }
 
 
+
 //use generic approach
+// function onIconClick(obj) {
+//     var id = obj.id;
+//     console.log(id);
+//     var idList = Object.keys(buttonData);
+//     console.log(idList);
+//     for(let i =0 ;i<=idList.length;i++){
+//         let a =document.getElementById(idList[i]);
+//         console.log(a);
+//         a.addEventListener('click',callTabFunction(idList[i]));
+//     }
+//     //loadContainerData(id);
+
+// }
+
+// function callTabFunction(tab){
+//     if(tab===)
+    
+// }
+
+
 function onIconClick(obj) {
     var id = obj.id;
     console.log(id);
     loadContainerData(id);
 }
 
+
+function loadContainerData(id) {
+    selectedElement(id);
+    if (buttonData[id]) {
+        clearViewContainer();
+        buttonData[id].call();
+    }
+}
 
 function loadContainerData(id) {
     selectedElement(id);
