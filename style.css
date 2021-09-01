@@ -126,6 +126,7 @@ flex: 33.33%;
 
 .item-2-b {
     display: flex;
+    cursor: pointer;
 
 }
 
@@ -139,6 +140,8 @@ flex: 33.33%;
     align-items: center;
     padding-left: 8px;
 }
+
+
 
 .item-4 {
     width: 100px;
