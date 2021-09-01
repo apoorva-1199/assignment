@@ -71,7 +71,6 @@ async function setPostData() {
     divName.classList.remove('products');
     divName.classList.remove('roboimg');
     let posts = await fetchPostData();
-    console.log(posts);
     let output = "&lt;h2&gt;Lists of Posts&lt;/h2&gt;";
     divName.innerHTML = output;
     var ul = document.createElement('ul');

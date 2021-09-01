@@ -129,6 +129,7 @@ height:200px;
 .item-2-b {
     display: flex;
     cursor: pointer;
+    margin: -2px 10px 0px 0px;
 
 }
 
@@ -189,6 +190,7 @@ input {
 input::-webkit-search-cancel-button {
     font-size: 50px;
     cursor: pointer;
+    
 }
 
 
