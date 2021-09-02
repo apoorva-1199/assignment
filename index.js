@@ -33,49 +33,26 @@ function onEnterClick(event) {
     }
 }
 
-
-
-//use generic approach
-// function onIconClick(obj) {
-//     var id = obj.id;
-//     console.log(id);
-//     var idList = Object.keys(buttonData);
-//     console.log(idList);
-//     for(let i =0 ;i<=idList.length;i++){
-//         let a =document.getElementById(idList[i]);
-//         console.log(a);
-//         a.addEventListener('click',callTabFunction(idList[i]));
-//     }
-//     //loadContainerData(id);
-
-// }
-
-// function callTabFunction(tab){
-//     if(tab===)
-    
-// }
-
-
-function onIconClick(obj) {
-    var id = obj.id;
-    console.log(id);
-    loadContainerData(id);
-}
-
-
-function loadContainerData(id) {
-    selectedElement(id);
-    if (buttonData[id]) {
-        clearViewContainer();
-        buttonData[id].call();
+function onTabClick(event) {
+    let target = event.target;
+    let current = event.currentTarget;
+    let parent = target.parentElement;
+    var id = target.id;
+    if(target==current){
+       return;
     }
+    if(id.length==0){
+       id = parent.id;
+    }
+    loadContainerData(id);
+
 }
 
 function loadContainerData(id) {
     selectedElement(id);
     if (buttonData[id]) {
         clearViewContainer();
-        buttonData[id].call();
+        buttonData[id]();
     }
 }
 
@@ -89,7 +66,8 @@ function clearViewContainer() {
 
 //For fetching fake json  
 async function fetchPostData() {
-    if (Object.keys(apiResponse['postData']).length === 0 && apiResponse['postData'].constructor === Object) {
+    if (Object.keys(apiResponse['postData']).length === 0) {
+        console.log("inside fetch");
         apiResponse['postData'] = await (await fetch('https://jsonplaceholder.typicode.com/posts')).json();
     }
     return apiResponse['postData'];
@@ -100,7 +78,7 @@ async function setPostData() {
     divName.classList.remove('products');
     divName.classList.remove('roboimg');
     let posts = await fetchPostData();
-    let output = "&lt;h2&gt;Lists of Posts&lt;/h2&gt;";
+    let output = "<h2>Lists of Posts</h2>"
     divName.innerHTML = output;
     var ul = document.createElement('ul');
     posts.forEach(function (post) {
@@ -165,7 +143,7 @@ function videoPlayer() {
 
 //for shopping 
 async function getShopItems() {
-    if (Object.keys(apiResponse['productData']).length === 0 && apiResponse['productData'].constructor === Object) {
+    if (Object.keys(apiResponse['productData']).length === 0) {
         apiResponse['productData'] = await (await fetch("https://fakestoreapi.com/products")).json();
     }
     return apiResponse['productData'];
