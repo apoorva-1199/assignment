@@ -137,7 +137,7 @@ function slideShow() {
 //for video
 function videoPlayer() {
     let divName = document.getElementById("view-container");
-    const vidSrc = "<iframe title='YouTube video player' id='player'  type=\'text/html\' width='640' height='390' src='http://www.youtube.com/embed/W-Q7RMpINVo' frameborder='0' allowFullScreen></iframe>"
+    const vidSrc = "<iframe title='YouTube video player' id='player'  type=\'text/html\' width='640' height='390' src='https://www.youtube.com/embed/W-Q7RMpINVo' frameborder='0' allowFullScreen></iframe>"
     divName.innerHTML = vidSrc;
 }
 
